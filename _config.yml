@@ -13,12 +13,12 @@ url:                 https://earthquakoo.github.io
 baseurl:             ""
 
 # A very short description of your page
-tagline:             "All roads lead to data."
+tagline:             "Girok"
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
 description:         >
-  Data science enthusiast and addict :)
+  개발자다운 개발자가 될 때까지
 
 # This should be the same author as first entry in `_data/authors.yml`
 author:
@@ -44,14 +44,14 @@ google_fonts:        Lato
 
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
-google_analytics:    UA-137374202-1
+google_analytics:    
 
 # Setting a disqus shortname will enable the comment section on pages with `comments: true` in the front matter
 disqus: True
-disqus_shortname:    theorydb
+disqus_shortname:    jin
 
 # This text will appear in the footer of every page. Markdown enabled.
-copyright:           '&copy; 2019.04. by theorydb'
+copyright:           '&copy; 2023.03. by earthquakoo'
 
 # Format of the permalinks
 permalink:           pretty
@@ -130,13 +130,3 @@ compress_html:
 
 sass:
   style:             compressed
-
-tipue_search:
-  include:
-    pages: false
-    collections: []
-  exclude:
-    files: [search.html, index.html, tags.html]
-    categories: []
-    tags: []
-    

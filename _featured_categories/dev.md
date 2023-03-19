@@ -1,10 +1,10 @@
 ---
 layout: list
-title: Dev
+title: Development
 slug: dev
 menu: true
 submenu: true
-order: 3
+order: 2
 description: >
-  주로 Data Science 및 그 외 개발에 관련된 모든 것.  
+  공부한 것을 바탕으로 개발해본 것!  
 ---
