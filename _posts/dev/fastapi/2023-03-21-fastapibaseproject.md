@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[FastAPI] FastAPI base project"
+title:  "[FastAPI] 1. FastAPI base project"
 subtitle:   "FastAPI base project"
 categories: dev
 tags: fastapi python
@@ -25,32 +25,32 @@ FastAPI 공식문서에 기초적인 프로젝트 구조가 나와습니다. 하
 ```
 ├── src
 │   ├── auth
-|   |   ├── config.py   # local configs
+|   |   ├── config.py
 │   |   ├── models.py  
 │   │   ├── exceptions.py
 │   │   ├── router.py
-│   │   ├── schemas.py  # pydantic models
+│   │   ├── schemas.py
 │   │   ├── service.py
 │   │   └── utils.py
 │   ├── email
 |   |   ├── config.py
 │   │   ├── email.py
-│   │   ├── schemas.py  # pydantic models
+│   │   ├── schemas.py
 │   │   └── verification.html
-│   ├── config.py  # database configs
-│   ├── database.py  # db connection related stuff
+│   ├── config.py
+│   ├── database.py 
 │   ├── dependencies.py
-│   ├── exceptions.py  # global exceptions
-│   ├── models.py  # user models
+│   ├── exceptions.py
+│   ├── models.py
 │   └── main.py
 ├── requirements
 │   └── dev.txt
 ├── .env
 ├── .gitignore
-└── venv  # virtual environment
+└── venv
 ```
 
- `src` : 가장 상위에 존재하는 폴더
+ - `src` : 가장 상위에 존재하는 폴더
 	- `auth` : Authentication(인증)을 서비스로 회원가입, 로그인, 이메일 인증에 관한 폴더
 	- `email` : 이메일 인증을 위해 메일을 보내는 서비스와 메일 내용에 관한 폴더
 	- `requirements` : 패키지 폴더
