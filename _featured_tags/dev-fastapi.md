@@ -4,5 +4,5 @@ title: FastAPI
 slug: fastapi
 category: dev
 menu: false
-order: 3
+order: 1
 ---
