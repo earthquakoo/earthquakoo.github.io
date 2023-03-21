@@ -36,7 +36,6 @@ FastAPI 공식문서에 기초적인 프로젝트 구조가 나와습니다. 하
 │   ├── email
 |   |   ├── config.py
 │   │   ├── email.py
-│   │   ├── schemas.py
 │   │   └── verification.html
 │   ├── config.py
 │   ├── database.py 
