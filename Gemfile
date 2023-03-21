@@ -9,3 +9,4 @@ gem "classifier-reborn"
 gem 'wdm', '>= 0.1.0'
 gem "kramdown-parser-gfm"
 gem "webrick"
+gem "github-pages"
