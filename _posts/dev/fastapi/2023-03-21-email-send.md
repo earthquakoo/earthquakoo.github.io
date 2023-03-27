@@ -10,10 +10,10 @@ header-img:
 
 ## Email send
 
-이메일 인증에 필요한 메일 발송 세팅을 살펴보겠습니다. 이메일인증은 구글 이메일을 통한 것으로 구현하겠습니다. 구글 이메일을 통해 메일을 발송하기 위해 몇 가지 설정을 해야했습니다.
+이메일 인증은 구글 이메일 서버를 통해 진행했습니다. 구글 이메일로 메일을 발송하기 위해선 몇 가지 설정을 해야합니다.
 
 - [구글 앱 비밀번호 설정](https://support.google.com/accounts/answer/185833?hl=ko) 절차를 통해 2단계 인증을 만들고 앱 비밀번호를 설정합니다.
-- `.env` 환경변수 파일에 이메일을 보낼 계정(ex. xxxx@gmail.com)과 생성된 앱 비밀번호 16자리를 저장합니다.
+- `.env` 파일에 이메일을 보낼 계정(ex. xxxx@gmail.com)과 생성된 앱 비밀번호 16자리를 저장합니다.
 	- `GMAIL_SENDER=xxxxx@gmail.com`
 	- `GMAIL_APP_PASSWORD=xxxxxxxxxxxxxxxx`
 
@@ -41,7 +41,7 @@ def get_email_settings():
     return EmailSettings()
 ```
 
-메일 발송에 필요한 정보들을 `.env` 환경변수에서 가져와 `pydantic.BaseSettings`를 통해 서브 클래스로 만들어 주고 함수를 통해 인스턴스를 반환해주었습니다.
+메일 발송에 필요한 정보들을 `.env` 에서 가져와 `pydantic.BaseSettings`를 통해 서브 클래스로 만들어 주고 함수를 통해 인스턴스를 반환해주었습니다.
 
 
 Python에서 메일을 보내기 위해서는 [smtplib](https://docs.python.org/ko/3/library/smtplib.html) 라는 모듈을 사용해야합니다. SMTP(Simple Mail Transfer Protocol)은 메일을 보내는데 사용되는 프토콜입니다. 
