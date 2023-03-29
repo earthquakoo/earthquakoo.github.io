@@ -7,7 +7,6 @@ tags: fastapi python
 comments: true
 ---
 
-
 ## Authentication settings
 
 이전에 나왔던 데이터베이스와 이메일 세팅과 동일합니다. 
@@ -106,7 +105,7 @@ Token과 관련된 pydantic model로 end point에서 사용됩니다.
 
 ## Register
 
-회원가입 절차에 대한 end point router입니다. 대부분의 내용은 공식문서에서 확인할 수 있으나 따로 작성한 코드들을 주로 살펴보겠습니다.
+회원가입 절차에 대한 end point router입니다.
 
 `/src/auth/router.py`
 ```python
@@ -117,11 +116,6 @@ async def register(user: schemas.UserCreate, background_tasks: BackgroundTasks, 
     # Check if there's a duplicated email in the DB
     if service.get_current_active_user(db ,email=user_dict['email'], is_activate=True):
         raise exceptions.EmailAlreadyExistsException(email=user_dict['email'])   
-    
-    if service.get_current_active_user(db ,email=user_dict['email'], is_activate=False):
-        update_user = db.query(glob_models.User).filter(glob_models.User.email==user_dict['email']).first()
-        db.delete(update_user)
-        db.commit()
     
     # Send verification code
     verification_code = utils.generate_verification_code(len=6)
@@ -141,8 +135,20 @@ async def register(user: schemas.UserCreate, background_tasks: BackgroundTasks, 
     hashed_password = utils.hash_password(user_dict['password'])
     user_dict.update(password=hashed_password)
     
+    if service.get_current_active_user(db ,email=user_dict['email'], is_activate=False):
+        update_user = db.query(glob_models.User).filter(glob_models.User.email==user_dict['email']).first()
+        update_user.password = hashed_password
+        update_user.verification_code = hashed_verification_code
+        
+        db.add(update_user)
+        db.commit()
+        db.refresh(update_user)
+        
+        return update_user
+    
     new_user = glob_models.User(**user_dict)
-    db.add(new_user) 
+    
+    db.add(new_user)
     db.commit()
     db.refresh(new_user)
     
@@ -156,20 +162,15 @@ async def register(user: schemas.UserCreate, background_tasks: BackgroundTasks, 
 async def register(user: schemas.UserCreate, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
 ```
 Response_model은 `UserCreateOut`으로 출력 데이터 모델을 지정해주었습니다. [BackgroudTasks](https://fastapi.tiangolo.com/tutorial/background-tasks/)는 응답을 반환한 후 실행할 백그라운드 작업을 정의합니다. 여기서는 이메일 인증 코드를 유저에게 보내는 역할을 합니다.
-![[post1.png]]
-이런 식으로 이메일과 패스워드를 입력하면 response_model로 지정해둔 `UserCreateOut`에서 설정해둔 형태로 출력됩니다.
+![img](/assets/img/dev/post1.PNG)
+이런 식으로 이메일과 패스워드를 입력하면 response_model로 `UserCreateOut`에서 설정해둔 형태로 출력됩니다.
 
 
 ```python
     if service.get_current_active_user(db ,email=user_dict['email'], is_activate=True):
-        raise exceptions.EmailAlreadyExistsException(email=user_dict['email'])   
-    
-    if service.get_current_active_user(db ,email=user_dict['email'], is_activate=False):
-        update_user = db.query(glob_models.User).filter(glob_models.User.email==user_dict['email']).first()
-        db.delete(update_user)
-        db.commit()
+        raise exceptions.EmailAlreadyExistsException(email=user_dict['email'])
 ```
-유저가 입력한 이메일이 이미 가입되어 있다면 예외처리로 에러를 발생시켜줍니다. 만약 입력한 이메일이 데이터베이스에는 있으나 등록이 되어있지 않다면(`is_activate=False`) 해당 이메일을 데이터베이스에서 삭제해줍니다. 
+`get_current_activate_user` 함수는 인자로 유저의 이메일과 유저의 활성화 여부를 넘기면 해당 유저의 정보를 반환합니다. 만약 유저가 입력한 이메일이 이미 가입되어 있다면 예외처리로 에러를 발생시켜줍니다.
 
 
 ```python
@@ -187,7 +188,7 @@ Response_model은 `UserCreateOut`으로 출력 데이터 모델을 지정해주�
     hashed_verification_code = utils.hash_verification_code(verification_code)
     user_dict.update(verification_code=hashed_verification_code)
 ```
-유저가 입력한 이메일로 인증코드를 발송하는 코드입니다. 이 인증코드는 hashing해서 업데이트하고 나중에 인증코드를 확인하는 과정에서 조회됩니다.
+유저가 입력한 이메일로 인증코드를 발송하는 코드입니다. 생성한 코드를 `verification.html` 안에 `__VERIFICATION_CODE__` 넣어 메일을 보냅니다. 이 인증코드는 hashing해서 데이터베이스에 저장하고 인증코드를 확인하는 과정에서 조회됩니다.
 
 
 ```python
@@ -195,13 +196,30 @@ Response_model은 `UserCreateOut`으로 출력 데이터 모델을 지정해주�
     hashed_password = utils.hash_password(user_dict['password'])
     user_dict.update(password=hashed_password)
     
+    if service.get_current_active_user(db ,email=user_dict['email'], is_activate=False):
+        update_user = db.query(glob_models.User).filter(glob_models.User.email==user_dict['email']).first()
+        update_user.password = hashed_password
+        update_user.verification_code = hashed_verification_code
+        
+        db.add(update_user)
+        db.commit()
+        db.refresh(update_user)
+        
+        return update_user
+```
+만약 유저가 입력한 이메일이 데이터베이스에 저장은 되어 있으나 활성화가 되어 있지 않으면 새로 입력한 비밀번호와 코드를 저장하고 이를 데이터베이스에 업데이트합니다
+
+예를 들어, 유저가 오늘 회원가입을 진행하다가 갑자기 회원가입 하기 싫어졌다고 합니다. 그렇다면 데이터베이스에 유저의 정보는 저장되어 있는 상태지만 `is_activate`가 활성화되지 않았습니다. 그러다가 며칠 뒤 다시 회원가입을 진행한다고 했을 때 원래의 유저 정보 중 비밀번호와 이메일 인증 코드를 업데이트해 다시 회원가입을 진행하는 방식입니다.
+
+
+```python
     new_user = glob_models.User(**user_dict)
     db.add(new_user) 
     db.commit()
     db.refresh(new_user)
 ```
-유저가 입력한 비밀번호를 hashing해서 업데이트합니다. 이후 변경된 유저 정보를 SQLAlchemy 모델로 넘겨 데이터베이스 추가하고 저장합니다.
-![[database1 1.png]]
+만약 데이터베이스에 저장되어 있지 않은 새로운 유저라면 변경된 유저 정보를 SQLAlchemy 모델로 넘겨 데이터베이스 추가하고 저장합니다.
+![img](/assets/img/dev/database1.PNG)
 데이터베이스를 조회해보면 저장이 잘 되어있는 것을 확인할 수 있습니다.
 
 ## 이메일 인증
@@ -228,7 +246,7 @@ async def verify_email(user: schemas.VerificationCode, db: Session = Depends(get
     return "Email authentication is complete."
 ```
 데이터베이스에 저장된 verification code와 유저가 입력한 verification code가 다르다면 오류를 발생시키고 같다면 `is_activate=True`로 유저를 활성화시켜줍니다. 이후 데이터베이스에 업데이트된 내용을 추가합니다.
-![[database2.png]]
+![img](/assets/img/dev/database2.PNG)
 
 ## 로그인
 
@@ -262,5 +280,5 @@ async def login(
 
 > Refresh token은 access token과 동일하게 로그인할 때마다 발급되고 refresh token은 access token이 만료되었을 때 access token을 새로 발급해주는 역할을 합니다. 
 
-JWT의 이론적인 부분이 궁금하시다면 [여기]
-JWT의 구현 과정이 궁금하시다면 [여기] 를 참고해주시면 되겠습니다.
+JWT의 이론적인 부분이 궁금하시다면 [JWT 인증방식과 Access token, refresh token](https://earthquakoo.github.io/study/2023/03/26/review-book-hyperledger-fabric/)
+JWT의 구현 과정이 궁금하시다면 [Access token과 refresh token 구현](https://earthquakoo.github.io/dev/2023/03/27/refreshtoken/) 를 참고해주시면 되겠습니다.

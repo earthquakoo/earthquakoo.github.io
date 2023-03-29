@@ -3,7 +3,7 @@ layout: post
 title:  "JWT 인증 방식과 Access token, refresh token"
 subtitle:   "JWT, access token, refresh token"
 categories: study
-tags: fastapi, python, jwt, access token, refresh token
+tags: fastapi python JWT
 comments: true
 ---
 

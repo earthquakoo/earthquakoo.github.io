@@ -13,7 +13,7 @@ url:                 https://earthquakoo.github.io
 baseurl:             ""
 
 # A very short description of your page
-tagline:             "Girok"
+tagline:             "Dev"
 
 # A short description of the page, used in the sidebar and as fallback for the meta description tag.
 # Markdown enabled, but don't use more than one paragraph (enforced by `>`)
@@ -51,7 +51,7 @@ disqus: True
 disqus_shortname:    jin
 
 # This text will appear in the footer of every page. Markdown enabled.
-copyright:           '&copy; 2023.03. by earthquakoo'
+copyright:           '&copy; 2023.02. by earthquakoo'
 
 # Format of the permalinks
 permalink:           pretty

@@ -91,3 +91,10 @@ email_sender = EmailSender(
     settings.GMAIL_SENDER, settings.GMAIL_APP_PASSWORD)
 ```
 SMTP 서버에 연결하고 계정과 암호가 인증되면 사용자 인증을 받게 됩니다. 이후 `send_email` 메서드를 사용하여 제목과 송신자, 수신자를 설정하고 html을 첨부하여 메일을 발송하게 됩니다.
+
+## Email templates
+
+이메일 템플릿은 [unlayer](https://unlayer.com/features?gclid=CjwKCAjwoIqhBhAGEiwArXT7KxDUdn1swo8y0dOnUJtEeirLkpjHT2eMlzc6gAdncEIO7mcjsyswixoCi3cQAvD_BwE) 라는 사이트에 제작을 했습니다. GUI를 통해 손쉽게 메일 템플릿을 제작할 수 있어 편리합니다!
+
+제가 만든 메일 템플릿은 아래와 같으며 수정해서 사용하길 원한다면 `/src/auth/verification.html` 파일을 수정해서 사용하시면 되겠습니다. 
+![img](/assets/img/dev/emailtemplates.PNG)
