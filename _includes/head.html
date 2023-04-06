@@ -9,6 +9,16 @@
 <meta property="og:title" content="{{ page.title }}">
 <meta property="og:type" content="article">
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DSF6BNZHRS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DSF6BNZHRS');
+</script>
+
 
 {% for tag_slug in page.tags %}
   {% unless tag.header-img %}
@@ -62,6 +72,7 @@
 
 <!-- MathJax -->
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 
 <!-- =============== -->
 <!-- LINKS           -->
@@ -132,3 +143,5 @@
   <link rel="stylesheet" href="{{ icons_url | absolute_url }}">
 </noscript>
 <!--<![endif]-->
+
+
