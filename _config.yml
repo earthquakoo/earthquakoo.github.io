@@ -102,6 +102,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-redirect-from
+  - jekyll-katex
 
 exclude:
   - README.md

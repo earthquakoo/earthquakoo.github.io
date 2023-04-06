@@ -10,3 +10,4 @@ gem 'wdm', '>= 0.1.0'
 gem "kramdown-parser-gfm"
 gem "webrick"
 gem "github-pages"
+gem "jekyll-katex", "~> 1.0.0"
