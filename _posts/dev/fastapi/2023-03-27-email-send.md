@@ -8,6 +8,10 @@ comments: true
 header-img:
 ---
 
+1. Email send
+2. Email templates
+---
+
 ## Email send
 
 이메일 인증은 구글 stmp를 통해 진행했습니다. 구글 이메일로 메일을 발송하기 위해선 몇 가지 설정을 해야합니다.

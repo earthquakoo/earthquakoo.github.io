@@ -7,6 +7,13 @@ tags: fastapi python
 comments: true
 ---
 
+1. Authentication settings
+2. User schema
+3. Register
+4. Email authentication 
+5. Login
+---
+
 ## Authentication settings
 
 이전에 나왔던 데이터베이스와 이메일 세팅과 동일합니다. 
@@ -222,7 +229,7 @@ Response_model은 `UserCreateOut`으로 출력 데이터 모델을 지정해주�
 ![img](/assets/img/dev/database1.PNG)
 데이터베이스를 조회해보면 저장이 잘 되어있는 것을 확인할 수 있습니다.
 
-## 이메일 인증
+## Email authentication
 
 ```python
 @router.post("/register/verification_code", status_code=status.HTTP_200_OK)
@@ -248,7 +255,7 @@ async def verify_email(user: schemas.VerificationCode, db: Session = Depends(get
 데이터베이스에 저장된 verification code와 유저가 입력한 verification code가 다르다면 오류를 발생시키고 같다면 `is_activate=True`로 유저를 활성화시켜줍니다. 이후 데이터베이스에 업데이트된 내용을 추가합니다.
 ![img](/assets/img/dev/database2.PNG)
 
-## 로그인
+## Login
 
 ```python
 @router.post('/login', response_model=schemas.Token)

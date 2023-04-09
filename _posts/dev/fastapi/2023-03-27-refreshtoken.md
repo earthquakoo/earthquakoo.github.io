@@ -3,8 +3,13 @@ layout: post
 title:  "[FastAPI] Access token과 refresh token 구현"
 subtitle:   "FastAPI base project"
 categories: dev
-tags: fastapi, python, access token, refresh token
+tags: fastapi python accesstoken refreshtoken
 comments: true
+---
+
+1. 개요
+2. create token
+3. update access token
 ---
 
 ## 개요
