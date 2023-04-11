@@ -12,6 +12,7 @@ comments: true
 3. Register
 4. Email authentication 
 5. Login
+  
 ---
 
 ## Authentication settings

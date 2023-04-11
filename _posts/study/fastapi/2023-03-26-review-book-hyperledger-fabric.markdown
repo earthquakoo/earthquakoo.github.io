@@ -7,6 +7,15 @@ tags: fastapi python JWT
 comments: true
 ---
 
+1. JWT란?
+2. JWT 인증 과정
+3. JWT 구성
+4. Access token
+5. Refresh token
+6. Refresh token, access token 매커니즘
+  
+---
+
 ## JWT란?
 
 JWT(Json Web Token)은 선태적 서명 및 선택적 암호화를 사용하여 데이터를 만들기 위한 인터넷 표준 인증 방식입니다. 즉, 인증에 필요한 정보들을 token에 담아 암호화시켜 사용하는 방식입니다.
