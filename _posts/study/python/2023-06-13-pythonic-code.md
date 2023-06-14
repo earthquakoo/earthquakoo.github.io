@@ -20,6 +20,7 @@ comments: true
 ## split, join
 - `s.split()` : 문자열의 값을 특정 구분자로 나누어 list 형태로 반환
 - `s.join()` : `split()` 과 반대로 list를 구분자로 연결해 하나의 문자열로 합쳐서 반환
+
 ```python
 s = "jin jinwoo earthquakoo"
 print(s.split())
@@ -35,6 +36,7 @@ jin jinwoo earthquakoo
 
 ## list comperhension
 - 기존의 list를 사용해서 다른 list를 만드는 기법
+
 ```python
 a = []
 
@@ -56,6 +58,7 @@ print(l)
 
 ## enumerate
 - `enumerate()` : list의 element를 접근할 때 index를 부여해서 추출하는 방법으로 index와 element를 동시에 접근하면서 반복문 돈다.
+
 ```python
 l = ['jin', 'jinwoo', 'earthquakoo']
 
@@ -70,6 +73,7 @@ for i, e in enumerate(l):
 
 ## zip
 - `zip()` : 두 개의 list를 병렬적으로 접근하여 추출하는 방법으로 두 list의 데이터를 엮어 tuple로 만든다.
+
 ```python
 a = ['jin', 'jinwoo', 'earthquakoo']
 b = ['good man', 'nice guy', 'bad guy']
@@ -85,6 +89,7 @@ earthquakoo bad guy
 
 ## lambda, map
 - `lambda` : return할 값을 한 줄 정도의 statement로 작성(python3 부터는 권장하지 않음)
+
 ```python
 def num_add(x, y):
     return x + y
@@ -101,6 +106,7 @@ print(num_add(3, 4))
 
 - `map()` : list의 element들을 지정된 함수로 처리. 두 개 이상의 list에 적용 가능하고 `if filter`도 사용 가능하다.
 - list comperhension 형태로 표현하는 것이 좋다.
+
 ```python
 a = [1,2,3]
 
@@ -120,6 +126,7 @@ print(list(map(num_sum, a, a)))
 - element가 사용되는 시점에 값을 메모리에 반환
 	- yield를 사용해 한 번에 하나의 element만 반환
 - 많은 데이터를 쓸 때 메모리를 절약할 수 있다.
+
 ```python
 import sys
 
@@ -159,6 +166,7 @@ print(sys.getsizeof(result2))
 - 개수가 정해지지 않은 변수를 함수의 parameter로 사용
 - asterisk를 사용해서 함수의 parameter로 표시
 - 입력된 값은 함수 내에서 tuple type으로 사용
+
 ```python
 def variable_length_argument(a, b, *args):
     return a + b + sum(args)
@@ -174,6 +182,7 @@ print(variable_length_argument(1,2,3,4,5,6,7,8,9,10))
 - asterisk를 두 개 사용하여 함수의 parameter로 표시
 - 입력된 값은 함수 내에서 dict type 으로 사용
 - variable-length argument와 같이 사용할 경우 가변인자 다음에 사용
+
 ```python
 def keyword_variable_length_argument(**kwargs):
     return kwargs
