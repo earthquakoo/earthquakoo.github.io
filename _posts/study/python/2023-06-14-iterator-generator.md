@@ -27,7 +27,7 @@ Iterator 객체는 값을 차례대로 꺼낼 수 있는 객체로 `next()` 메�
 a = [1,2,3]
 next(a)
 ```
-```
+```terminal
 Traceback (most recent call last):
   File "C:\Users\cream\Desktop\sigan\asd.py", line 2, in <module>
     next(a)
@@ -43,7 +43,7 @@ print(type(a))
 b = iter(a)
 print(type(b))
 ```
-```
+```terminal
 <class 'list'>
 <class 'list_iterator'>
 ```
@@ -54,7 +54,7 @@ print((next(b)))
 print((next(b)))
 print((next(b)))
 ```
-```
+```terminal
 1
 2
 3
@@ -91,7 +91,7 @@ print(next(gen_iterator)) # step 3
 print(next(gen_iterator)) # step 5
 print(next(gen_iterator)) # step 7
 ```
-```
+```terminal
 <class 'function'>
 <class 'generator'>
 1
@@ -109,7 +109,7 @@ StopIteration
 for e in my_generator():
 	print(e)
 ```
-```
+```terminal
 1
 2
 3

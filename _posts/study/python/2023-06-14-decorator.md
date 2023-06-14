@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Decorator(First-class function, closure)"
+title:  "Decorator(First class function, closure)"
 subtitle:   "decorator"
 categories: study
 tags: python
@@ -260,7 +260,7 @@ def display2():
 display_1()
 display_2()
 ```
-```bash
+```terminal
 display_1 함수가 호출되기전 입니다.
 display_1 함수가 실행됐습니다.
 display_2 함수가 호출되기전 입니다.
@@ -268,4 +268,3 @@ display_2 함수가 실행됐습니다.
 ```
 
 `@` 문자를 이용해 데코레이터 구문이 더 간소화되고 동일한 결과를 확인할 수 있습니다. 즉, `@decorator_function` 과 `display_1 = decorator_function(display1)` 이 구문은 동일한 역할을 하는 것을 알 수 있습니다.
-

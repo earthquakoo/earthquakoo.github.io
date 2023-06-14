@@ -28,7 +28,7 @@ print(s.split())
 l = ['jin', 'jinwoo', 'earthquakoo']
 print(''.join(l))
 ```
-```
+```terminal
 ['jin', 'jinwoo', 'earthquakoo']
 
 jin jinwoo earthquakoo
@@ -50,7 +50,7 @@ print(l)
 l = [i for i in range(10) if i % 2 == 0]
 print(l)
 ```
-```
+```terminal
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 [0, 2, 4, 6, 8]
@@ -65,7 +65,7 @@ l = ['jin', 'jinwoo', 'earthquakoo']
 for i, e in enumerate(l):
     print(i, e)
 ```
-```
+```terminal
 0 jin
 1 jinwoo
 2 earthquakoo
@@ -81,7 +81,7 @@ b = ['good man', 'nice guy', 'bad guy']
 for list_a, list_b in zip(a, b):
     print(list_a, list_b)
 ```
-```
+```terminal
 jin good man
 jinwoo nice guy
 earthquakoo bad guy
@@ -99,7 +99,7 @@ print(num_add(1, 2))
 num_add = lambda x, y : x + y
 print(num_add(3, 4))
 ```
-```
+```terminal
 3
 7
 ```
@@ -116,7 +116,7 @@ print(list(map(num_square, a)))
 num_sum = lambda x, y : x + y
 print(list(map(num_sum, a, a)))
 ```
-```python
+```terminal
 [1, 4, 9]
 [2, 4, 6]
 ```
@@ -141,7 +141,7 @@ print(result1)
 print(type(result1))
 print(sys.getsizeof(result1))
 ```
-```
+```terminal
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
 <class 'list'>
 472
@@ -157,7 +157,7 @@ result2 = generator_list(50)
 print(type(result2))
 print(sys.getsizeof(result2))
 ```
-```
+```terminal
 <class 'generator'>
 112
 ```
@@ -173,7 +173,7 @@ def variable_length_argument(a, b, *args):
 
 print(variable_length_argument(1,2,3,4,5,6,7,8,9,10))
 ```
-```
+```terminal
 55
 ```
 
@@ -189,7 +189,7 @@ def keyword_variable_length_argument(**kwargs):
 
 print(keyword_variable_length_argument(a = 1, b = 2, c = 3))
 ```
-```
+```terminal
 {'a': 1, 'b': 2, 'c': 3}
 ```
 
@@ -202,7 +202,7 @@ def unpacking_container(a, *args):
 
 unpacking_container(1, *(2,3,4,5,6))
 ```
-```
+```terminal
 1 2 3 4 5 6
 1 (2, 3, 4, 5, 6)
 <class 'tuple'>
