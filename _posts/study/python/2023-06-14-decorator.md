@@ -183,6 +183,34 @@ def outer():
 
 위의 예제에서는 함수 `inner` 기준으로 `b`가 자유 변수라고 할 수 있습니다다. `inner`의 코드 영역에서는 `a`는 전역 변수이며, `c`는 지역 변수인데 변수 `b`는 함수 `inner` 내부에서 정의된 것이 아니기 때문입니다.
 
+> Criteria of Closure
+
+Closure를 만들기 위해선 3 가지의 조건이 필요합니다.
+
+1. 중첩 함수(`inner`)가 있어야 합니다.
+2. 감싸는 함수(`outer`)는 중첩 함수(`inner`)를 반환해야 합니다.
+3. 중첩 함수는 자유 함수(free variable) `b` 를 참조해야합니다.
+
+```python
+def make_raised_to_power_of(k):
+    def power_of(x):
+        return x ** k
+    return power_of
+
+power2 = make_raised_to_power_of(2)
+power3 = make_raised_to_power_of(3)
+power5 = make_raised_to_power_of(5)
+
+print(power2(5))
+print(power3(5))
+print(power5(5))
+```
+```terminal
+25
+125
+3125
+```
+
 ## Decorator
 
 데코레이터(decorator)란 사전적 의미로는 '장식', '장식하는 사람'이란 뜻을 가지고 파이썬에서도 비슷한 의미로 사용됩니다. 기존의 코드에 여러 기능을 추가하는 파이썬 구문이라고 생각하면 편합니다.
