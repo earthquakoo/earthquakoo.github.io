@@ -41,10 +41,9 @@ print(f)
 def square(x):
     return x * x
 
-print(square(5))
-
 f = square
 
+print(square(5))
 print(f(5))
 ```
 ```terminal
@@ -88,7 +87,7 @@ print(quads)
 [1, 16, 81, 256, 625]
 ```
 
-이처럼 first class function을 이용하면 이미 정의된 여러 함수를 간단히 재활용할 수 있습니다.
+이처럼 first class function을 이용해 함수의 인자로서 전달해 이미 정의된 여러 함수를 간단히 재활용할 수 있습니다.
 
 ## Closure
 
@@ -222,7 +221,7 @@ def decorator_function(original_function):
     return wrapper_function
 
 
-def display():  # 2
+def display():
     print('display 함수가 실행되었습니다.')
 
 
