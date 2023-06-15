@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Decorator(First class function, closure)"
-subtitle:   "decorator"
+title:  "Decorator"
+subtitle:   "decorator, first-class function, closure"
 categories: study
 tags: python
 comments: true
