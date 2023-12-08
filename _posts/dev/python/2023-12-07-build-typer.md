@@ -3,7 +3,7 @@ layout: post
 title:  "Typer로 CLI App 구축하기"
 subtitle:   "Typer로 CLI App 구축하기"
 categories: dev
-tags: fastapi python
+tags: python
 comments: true
 ---
 
