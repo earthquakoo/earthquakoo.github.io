@@ -6,9 +6,11 @@ categories: dev
 tags: fastapi python
 comments: true
 ---
+
 - Introduction
 - Requests method with FastAPI
 - 직접 적용한 requests with FastAPI
+
 ---
 # Introduction
 
