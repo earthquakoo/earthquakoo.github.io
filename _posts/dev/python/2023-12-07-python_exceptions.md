@@ -237,3 +237,8 @@ app.add_exception_handler(BaseCustomException, base_custom_exception_handler)
 ```
 
 이것이 실제로 적용된 코드가 궁금하다면 [Jobdamserver](https://github.com/earthquakoo/jobdamserver)에서 확인이 가능합니다!
+
+### reference
+
+- https://docs.python.org/ko/3/tutorial/errors.html
+- https://fastapi.tiangolo.com/tutorial/handling-errors/
