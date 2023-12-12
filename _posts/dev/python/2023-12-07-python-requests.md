@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Python requests로 Rest API 호출하기"
+title:  "HTTP 통신을 위한 Requests 라이브러리 with FastAPI"
 subtitle:   "Python requests로 Rest API 호출하기"
 categories: dev
 tags: fastapi python
@@ -8,17 +8,23 @@ comments: true
 ---
 
 - Introduction
+- Requests 라이브러리
 - Requests method with FastAPI
 - 직접 적용한 requests with FastAPI
 
 ---
+
 # Introduction
 
-[Jobdam](https://github.com/earthquakoo/jobdamserver) 프로젝트에서 python으로 HTTP 통신을 가능케 해야했습니다. 
+[Jobdam](https://github.com/earthquakoo/jobdamserver) 프로젝트에서 Python을 사용하여 HTTP 통신을 구현해야 했습니다. 
 
-저는 Python 기반의 TUI(Terminal User Interface)인 [Textual](https://textual.textualize.io/)로 터미널 앱 [Jobdam](https://github.com/earthquakoo/jobdamserver)을 구축한 경험이 있습니다.  또한 서버도 python 기반인 FastAPI로 구축하였기 때문에 python으로 HTTP 통신을 가능하게 만들어야 했습니다.
+저는 Python 기반의 TUI(Terminal User Interface)인 [Textual](https://textual.textualize.io/)로 터미널 앱 [Jobdam](https://github.com/earthquakoo/jobdamserver)을 개발한 경험이 있습니다. 또한, 해당 프로젝트의 서버는 Python 기반의 FastAPI를 사용하여 구축되었기 때문에 Python을 이용한 HTTP 통신이 필수적이었습니다.
 
-이를 위해 python으로 HTTP 통신을 가능하게 해주는 [requests](https://pypi.org/project/requests/)라이브러리를 사용하게 되었습니다. 이번 포스팅에서 requests 라이브러리에 대해 알아보고 Jobdam 프로젝트에서 어떻게 적용했는지까지 살펴보도록 하겠습니다.
+이를 위해 python으로 HTTP 통신을 가능하게 해주는 [requests](https://pypi.org/project/requests/)라이브러리를 사용하게 되었습니다. 이번 포스팅에서는 requests 라이브러리에 대한 개요와 Jobdam 프로젝트에서의 적용 방법에 대해 알아보겠습니다.
+
+# 환경설정 및 Requests 라이브러리 개요
+
+Requests 라이브러리는 HTTP 통신을 위한 다양한 메서드를 제공합니다. 이를 이용하여 REST API 방식의 Web API를 호출하고 데이터를 요청, 수정할 수 있습니다. 주요 메서드로는 `get`, `post`, `patch`, `put`, `delete` 등이 있습니다.
 
 먼저 가상환경을 생성하고  패키지를 설치해줍니다.
 
@@ -29,9 +35,11 @@ source venv/scripts/activate
 
 pip install requests
 ```
+
+
 # Requests method with FastAPI
 
-requests는 `get`, `post`, `patch`, `put`, `delete` 등으로 Rest API 방식의 Web API를 호출해 데이터를 요청하거나 수정하는 등의 작업을 처리할 수 있습니다.
+FastAPI는 빠르고 현대적인 Python 웹 프레임워크로, requests 라이브러리와 함께 사용하면 효율적인 웹 개발이 가능합니다.
 
 이를 간단한 FastAPI 서버를 만들어서 테스트 해보겠습니다.
 
@@ -41,7 +49,7 @@ FastAPI 패키지를 설치해줍니다.
 pip install "fastapi[all]"
 ```
 
-이후 루트 디렉토리에 `server.py` 파일을 생성하고 FastAPI 예제 중 하나인 아래의 코드를 작성해줍니다.
+FastAPI를 이용하여 간단한 서버를 만들어보겠습니다. `server.py` 파일을 생성하고 다음의 코드를 작성합니다.
 
 ```python
 from typing import Union
@@ -61,7 +69,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 ```
 
-이제 클라이언트측에서 요청이 필요합니다. 루트 디렉토리에 `client.py` 파일을 생성하고 간단한 테스트를 해보겠습니다.
+이제 클라이언트에서 해당 서버에 요청을 보내보겠습니다. `client.py` 파일을 생성하고 아래의 코드를 작성합니다.
 
 ```python
 import requests
@@ -243,5 +251,5 @@ requests 모듈을 직접 적용한 프로젝트의 코드를 확인하고 싶�
 
 ### reference
 
-- https://docs.python-requests.org/en/latest/user/quickstart/
-- https://www.daleseo.com/python-requests/
+- [Requests 라이브러리 공식 문서](https://docs.python-requests.org/en/latest/user/quickstart/)
+- [파이썬에서 requests 라이브러리로 원격 API 호출하기](https://www.daleseo.com/python-requests/)

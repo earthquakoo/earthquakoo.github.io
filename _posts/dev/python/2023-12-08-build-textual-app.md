@@ -115,3 +115,4 @@ input.value = ""
 
 더 자세한 정보는 [Textual](https://textual.textualize.io/)공식문서에서 확인이 가능합니다. 
 
+다음 포스팅에선 해당 프로젝트를 PyPI에 배포해보겠습니다.
